@@ -6,7 +6,13 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { counterReducer } from './counter.reducer';
+import { CounterFeature, counterReducer } from './counter.reducer';
+import { LanguageFeature, languageReducer } from './language.reducer';
+
+export interface AppState {
+  counterSlice: CounterFeature;
+  languageSlice: LanguageFeature;
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +22,7 @@ import { counterReducer } from './counter.reducer';
     StoreModule.forRoot(
       {
         counterSlice: counterReducer,
+        languageSlice: languageReducer,
       },
       {}
     ),

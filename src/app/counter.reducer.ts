@@ -1,5 +1,6 @@
 import { createAction, createReducer, createSelector, on } from '@ngrx/store';
 import produce from 'immer';
+import { AppState } from './app.module';
 
 export interface CounterFeature {
   counter: number;
@@ -8,10 +9,6 @@ export interface CounterFeature {
 const initialCounterState: CounterFeature = {
   counter: 0,
 };
-
-export interface AppState {
-  counterSlice: CounterFeature;
-}
 
 export const selectCounterFn = (state: AppState) => {
   return state.counterSlice;
