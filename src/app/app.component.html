@@ -8,3 +8,9 @@
   </button>
   <button class="btn btn-danger" (click)="handleDecrement()">Decrement</button>
 </div>
+
+<hr />
+<p>Error: {{ todoErrorMessage$ | async }}</p>
+<pre>
+  {{ todos$ | async | json }}
+</pre>

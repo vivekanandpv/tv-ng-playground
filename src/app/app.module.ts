@@ -8,10 +8,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CounterFeature, counterReducer } from './counter.reducer';
 import { LanguageFeature, languageReducer } from './language.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
+import { TodoEffects } from './todo.effects';
+import { TodoFeature, todoReducer } from './todo.actions';
 
 export interface AppState {
   counterSlice: CounterFeature;
   languageSlice: LanguageFeature;
+  todoSlice: TodoFeature;
 }
 
 @NgModule({
@@ -23,6 +28,7 @@ export interface AppState {
       {
         counterSlice: counterReducer,
         languageSlice: languageReducer,
+        todoSlice: todoReducer,
       },
       {}
     ),
@@ -30,6 +36,8 @@ export interface AppState {
       maxAge: 25,
       logOnly: environment.production,
     }),
+    EffectsModule.forRoot([TodoEffects]),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

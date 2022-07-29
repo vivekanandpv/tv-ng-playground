@@ -4,6 +4,12 @@ import { Observable } from 'rxjs';
 import { AppState } from './app.module';
 import { counterSelector, decrement, increment } from './counter.reducer';
 import { changeLanguage, languageSelector } from './language.reducer';
+import {
+  loadTodos,
+  Todo,
+  todoErrorMessageSelector,
+  todoSelector,
+} from './todo.actions';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +19,14 @@ import { changeLanguage, languageSelector } from './language.reducer';
 export class AppComponent {
   counter$: Observable<number>;
   language$: Observable<string>;
+  todos$: Observable<Todo[]>;
+  todoErrorMessage$: Observable<string | null>;
 
   constructor(private store: Store<AppState>) {
     this.counter$ = this.store.select(counterSelector);
     this.language$ = this.store.select(languageSelector);
+    this.todos$ = this.store.select(todoSelector);
+    this.todoErrorMessage$ = this.store.select(todoErrorMessageSelector);
   }
 
   handleIncrement() {
@@ -24,6 +34,6 @@ export class AppComponent {
   }
 
   handleDecrement() {
-    this.store.dispatch(decrement());
+    this.store.dispatch(loadTodos());
   }
 }
