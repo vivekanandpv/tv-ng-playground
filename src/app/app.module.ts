@@ -12,6 +12,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { TodoEffects } from './todo.effects';
 import { TodoFeature, todoReducer } from './todo.actions';
+import { SampleComponent } from './sample/sample.component';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 export interface AppState {
   counterSlice: CounterFeature;
@@ -20,7 +24,12 @@ export interface AppState {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    SampleComponent,
+    HomeComponent,
+    NotFoundComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,6 +38,7 @@ export interface AppState {
         counterSlice: counterReducer,
         languageSlice: languageReducer,
         todoSlice: todoReducer,
+        router: routerReducer,
       },
       {}
     ),
@@ -38,6 +48,7 @@ export interface AppState {
     }),
     EffectsModule.forRoot([TodoEffects]),
     HttpClientModule,
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

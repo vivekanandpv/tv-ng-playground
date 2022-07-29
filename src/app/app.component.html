@@ -1,16 +1,3 @@
 <div class="container p-5">
-  <h3>Counter: {{ counter$ | async }}</h3>
-  <h3>Language: {{ language$ | async }}</h3>
-
-  <hr />
-  <button class="btn btn-primary me-2" (click)="handleIncrement()">
-    Increment
-  </button>
-  <button class="btn btn-danger" (click)="handleDecrement()">Decrement</button>
+  <router-outlet></router-outlet>
 </div>
-
-<hr />
-<p>Error: {{ todoErrorMessage$ | async }}</p>
-<pre>
-  {{ todos$ | async | json }}
-</pre>

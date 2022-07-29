@@ -1,0 +1,18 @@
+<h3>Counter: {{ counter$ | async }}</h3>
+<h3>Language: {{ language$ | async }}</h3>
+
+<hr />
+<button class="btn btn-primary me-2" (click)="handleIncrement()">
+  Increment
+</button>
+<button class="btn btn-danger me-2" (click)="handleDecrement()">
+  Decrement
+</button>
+
+<button class="btn btn-warning" routerLink="sample">Go to Sample</button>
+
+<hr />
+<p>Error: {{ todoErrorMessage$ | async }}</p>
+<pre>
+  {{ todos$ | async | json }}
+</pre>
